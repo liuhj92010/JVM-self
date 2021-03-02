@@ -1,0 +1,41 @@
+CREATE  TABLE
+T_RUNNING_THREAD
+(
+WORK_ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1 ),
+NAME VARCHAR(150),
+BEGINTIME VARCHAR(50),
+ENDTIME VARCHAR(50),
+DESC VARCHAR(4000),
+SUCCESSFLAG CHARACTER(1),
+PRIMARY KEY (ID)
+)
+
+create table T_USER(
+        INTRANET_ID VARCHAR (256) not null,
+        UESR_NAME VARCHAR (256) not null,
+        UESR_ROLE VARCHAR (256) not null,
+        VM_OWNER_WORK_GROUP VARCHAR (256) not null,
+        VM_OWNER_NOTE VARCHAR (256) not null,
+        CREATE_USER_ID VARCHAR (256) not null,
+        UPDATE_USER_ID VARCHAR (256) not null,
+        CREATE_TIMESTAMP TIMESTAMP not null,
+        UPDATE_TIMESTAMP TIMESTAMP not null,
+        PRIMARY KEY (INTRANET_ID)
+)
+
+alter table T_USER alter column CREATE_TIMESTAMP set default current timestamp;
+alter table T_USER alter column UPDATE_TIMESTAMP set default current timestamp;
+
+insert into T_USER values('1','1','1','1','1','1','1',timestamp(trim(char('2009-12-17 19:41:31.156000'))),timestamp(trim(char('2009-12-17 19:41:31.156000'))))
+update T_USER set UESR_NAME = '2' where INTRANET_ID='1'
+update T_USER set UESR_NAME = '2',UPDATE_TIMESTAMP = TO_CHAR('2020-06-02 17:29:31','YYYY-MM-DD HH24:MI:SS') where INTRANET_ID='1'
+select * from T_USER
+drop table T_USER
+select * from T_USER
+
+insert into VOCS_USER values('1','1')
+insert into VOCS_USER values('2','1')
+insert into VOCS_USER values('3','3')
+
+
+update VOCS_USER set DB_TYPE = '2' where DB_ID = '2'

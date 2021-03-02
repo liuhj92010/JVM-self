@@ -1,0 +1,55 @@
+docker pull  name    // 下载镜像
+docker images       // 查看本地镜像
+docker run -d -p 80：80 name  // -d 后台运行不阻塞shell窗口 -p内外端口映射 --name给镜像起名 -v映射文件
+docker ps            // 查看正在运行的容器
+docker exec -it (ps命令id的前几位唯一标识就ok) bash
+cd usr/share/nginx/html/
+ls
+cat index.html    //表示文件信息
+echo hello > index.html
+exit
+
+docker rm -f (ps命令id的前几位唯一标识就ok) //删除容器
+docker commit (ps命令id的前几位唯一标识就ok) m1(提交的镜像name)
+
+新建dockerfile
+vim Dockerfile
+
+FROM nginx 
+ADD ./ /usr/share/nginx/html/
+wq
+
+vim index.html
+hello world
+wq
+
+docker buid -t m2(构建的镜像名) . 当前目录下的dockerfile文件(.很重要)
+docker run -d -p 80：80 m2
+
+docker ps
+docker save m2 >  1.tar
+
+docker rm -f //删除m2 容器
+docker rmi m2 //删除m2 镜像 
+
+
+docker load < 1.tar //导入镜像
+
+
+ifconfig //查看ip
+cat /etc/hosts
+
+
+
+
+=========================================
+docker run -dit --link myng：myng alpine 
+docker exec -it ** sh
+apk add curl
+
+curl myng
+
+
+
+
+RUN tar -xvf file.tar 
